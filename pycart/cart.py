@@ -30,6 +30,7 @@ def make_line(pid, qty):
          }
 
 def update_line_qty(pid, new_qty, cart):
+  # This is not OK. It discards "opt."
   tmp_cart = filter_by_not_pid(pid, cart)
   if new_qty <= 0:
     return tmp_cart
@@ -45,3 +46,9 @@ def add_to_line_qty(pid, amt, cart):
 
 def sub_from_line_qty(pid, amt, cart):
   return add_to_line_qty(pid, (-amt), cart)
+
+def increment_line_qty(pid, cart):
+  return add_to_line_qty(pid, 1, cart)
+
+def decrement_line_qty(pid, cart):
+  return sub_from_line_qty(pid, 1, cart)
